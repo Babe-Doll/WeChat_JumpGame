@@ -2,10 +2,8 @@ import GameOverPage from '../pages/game-over-page'
 import GamePage from '../pages/game-page'
 
 class GameView{
-    constructor (){
-
-    }
-
+    constructor (){ 
+    } 
     showGameOverPage (){
         this.gameOverPage.show()
     }

@@ -1,5 +1,5 @@
-import gameView from './gameView'
-import gameModel from './gameModel'
+import gameView from './view'
+import gameModel from './model'
 
 class GameController {
     constructor (){
@@ -11,19 +11,17 @@ class GameController {
         this.gameView.showGameOverPage()
     }
     restartGame =() =>{
-
-    }
-
+        this.gameView.restartGame()
+    } 
     initPages (){
         const gamePageCallbacks ={
             showGameOverPage: this.showGameOverPage
-        }
-
+        } 
         const gameOverPageCallbacks ={
             gameRestart: this.restartGame
-        }
-
+        } 
         this.gameView.initGameOverPage(gameOverPageCallbacks)
         this.gameView.initGamePage(gamePageCallbacks)
     }
 }
+export default new GameController()

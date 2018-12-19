@@ -6,9 +6,9 @@ window.THREE = THREE
 import game from './game/game'
 
 class Main{
-  static init(){
+  init (){
     game.init()
   }
 }
 
-export default Main()
+export default new Main()
