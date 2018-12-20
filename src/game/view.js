@@ -13,7 +13,9 @@ class GameView{
     }
     initGameOverPage (callbacks){
         this.gameOverPage = new GameOverPage(callbacks)
-        this.gameOverPage.init()
+        this.gameOverPage.init({
+            scene: this.gamePage.scene
+        })
     }
     initGamePage (callbacks){
         // gamepage 当view改变需要驱动model和controller的变化 所以需要具备改上层逻辑的能力，∴传callbacks

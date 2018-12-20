@@ -4,13 +4,14 @@ export default class GamePage {
     }
     init (){
         console.log('game page init')
-        var width = 375 
-        var height = 667
+        var width = window.innerWidth
+        var height = window.innerHeight
         var renderer = new THREE.WebGLRenderer({
             canvas: canvas
         })
         // 在scence中维护我们在场景中调用的物体
         var scene =new THREE.Scene()
+        this.scene = scene
         // 正交相机 没有透视效果的
         var camera = new THREE.OrthographicCamera(-width/ 2,width/ 2,height/ 2,-height/ 2, -1000, 1000)
 
@@ -36,7 +37,12 @@ export default class GamePage {
         mesh.position.x=0
         mesh.position.y=0
         mesh.position.z=1
-        scene.add(mesh)
+        // scene.add(mesh)
+
+
+        //helper
+        var axsHelper = new THREE.AxesHelper(100)
+        // scene.add(axsHelper)
 
         camera.position.x=0
         camera.position.y=0
