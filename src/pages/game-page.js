@@ -37,7 +37,8 @@ export default class GamePage {
         mesh.position.x=0
         mesh.position.y=0
         mesh.position.z=1
-        // scene.add(mesh)
+        this.mesh = mesh
+        scene.add(mesh)
 
 
         //helper
@@ -53,21 +54,32 @@ export default class GamePage {
         var lastTimestamp = Date.now()
 
         var animate = function () {
-        var now = Date.now()
-        var duration = now - lastTimestamp
-        lastTimestamp = now
-        currentAngle = currentAngle + duration / 1000 * Math.PI
+            var now = Date.now()
+            var duration = now - lastTimestamp
+            lastTimestamp = now
+            currentAngle = currentAngle + duration / 1000 * Math.PI
         }
+        
+        // 触发所有callback
+        setTimeout(()=> { 
+            this.callbacks.showGameOverPage()
+        }, 2000)
 
         var render = function () {
-        animate()
-        mesh.rotation.set(0, 0, currentAngle)
-        renderer.render(scene, camera)
-        requestAnimationFrame(render)
+            animate()
+            mesh.rotation.set(0, 0, currentAngle)
+            renderer.render(scene, camera)
+            requestAnimationFrame(render)
         }
 
         render()
 
+    }
+    show (){
+        this.mesh.visible = true
+    }
+    hide (){
+        this.mesh.visible = false
     }
     restart (){
         console.log('game page restart')

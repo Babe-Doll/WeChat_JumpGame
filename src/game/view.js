@@ -5,9 +5,14 @@ class GameView{
     constructor (){ 
     } 
     showGameOverPage (){
+        this.gamePage.hide()
         this.gameOverPage.show()
     }
-
+    showGamePage (){
+        this.gameOverPage.hide()
+        this.gamePage.restart()
+        this.gamePage.show()
+    }
     restartGame (){
         this.gamePage.restart()
     }

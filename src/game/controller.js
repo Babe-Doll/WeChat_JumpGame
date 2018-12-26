@@ -5,21 +5,27 @@ class GameController {
     constructor (){
         this.gameView = gameView
         this.gameModel = gameModel
-    }
-    showGameOverPage =() =>{
-        // 用箭头函数的话就不会改掉this ,只能是上层调用这个函数的那个this
-        this.gameView.showGameOverPage()
-    }
-    restartGame =() =>{
-        this.gameView.restartGame()
+        this.gameModel.stageChanged.attach((sender,args) =>{
+            const stageName = args.stage
+            switch (stageName) {
+                case 'game-over':
+                    this.gameView.showGameOverPage()
+                    break
+                case 'game':
+                    this.gameView.showGamePage()
+                    break
+            }
+        })
     } 
     initPages (){
         const gamePageCallbacks ={
-            showGameOverPage: this.showGameOverPage
+            showGameOverPage: ()=>{
+                this.gameModel.setStage('game-over')
+            }
         } 
-        const gameOverPageCallbacks ={
-            gameRestart: this.restartGame
-        } 
+        const gameOverPageCallbacks =()=>{
+            this.gameModel.setStage('game')
+        }
        
         this.gameView.initGamePage(gamePageCallbacks)
         this.gameView.initGameOverPage(gameOverPageCallbacks)

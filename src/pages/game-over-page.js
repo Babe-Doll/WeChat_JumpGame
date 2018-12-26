@@ -36,9 +36,13 @@ export default class GameOverPage {
         this.context.font = '20px Georgia'
         this.context.fillText('game over',(window.innerWidth - 200) / 2 + 50,(window.innerHeight - 100) / 2 + 55)
         this.texture.needsUpdate = true
+        this.obj.visible = false
         this.scene.add(this.obj)
     }
     show (){
-        console.log('game over page show')
+        this.obj.visible = true
+    }
+    hide (){
+        this.obj.visible = false
     }
 }
